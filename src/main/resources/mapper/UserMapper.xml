@@ -9,6 +9,19 @@
     <sql id="Base_Column_List" >
         id, name, age
     </sql>
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.jia.model.User">
+        INSERT INTO user
+          (
+            name,
+            age
+          )
+        VALUES
+          (
+            #{name},
+            #{age}
+          )
+    </insert>
+
     <select id="selectAll" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>

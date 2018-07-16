@@ -21,7 +21,7 @@ public class RedisServiceTest extends ApplicationTests {
     @Test
     public void set() {
         List<User> allUser = userService.findAllUser();
-        boolean res = redisService.set("user", allUser);
+        boolean res = redisService.set("allUser", allUser);
         System.out.println(res);
     }
 
@@ -47,7 +47,7 @@ public class RedisServiceTest extends ApplicationTests {
 
     @Test
     public void get() {
-        Object result = redisService.get("user");
+        Object result = redisService.get("allUser");
         System.out.println(result);
     }
 

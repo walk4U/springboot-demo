@@ -8,5 +8,7 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
 
+    int insert(User user);
+
     List<User> selectAll();
 }
