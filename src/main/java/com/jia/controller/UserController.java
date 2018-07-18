@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.jia.model.User;
+import com.jia.model.result.Result;
 import com.jia.service.UserService;
 import com.jia.service.redis.RedisService;
 import com.jia.utils.RedisObjectUtil;
@@ -30,14 +31,17 @@ public class UserController {
     RedisService redisService;
 
     @RequestMapping(value = "/get", method = RequestMethod.GET)
-    public List<User> getAllUser() {
+    public Result getAllUser() {
         logger.info("Start to get all user");
-        Object allUser = redisService.get("allUser");
-        List<User> list = RedisObjectUtil.convertToList(allUser, User.class);
-        if(list != null) {
-            return list;
+        Object allUser = redisService.get("USERS");
+        List<User> users;
+        if(allUser == null) {
+            users = userService.findAllUser();
+            redisService.set("USERS", users);
+        } else {
+            users = RedisObjectUtil.convertToList(allUser, User.class);
         }
-        return userService.findAllUser();
+        return Result.success(users);
     }
 
 
