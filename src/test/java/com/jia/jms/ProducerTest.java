@@ -6,6 +6,8 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.jms.Destination;
+import javax.jms.Queue;
+import javax.jms.Topic;
 
 /**
  * @Auther: jia
@@ -17,12 +19,17 @@ public class ProducerTest extends ApplicationTests{
     @Autowired
     Producer producer;
 
+    @Autowired
+    private Queue queue;
+
+    @Autowired
+    private Topic topic;
+
     @Test
     public void sendMessage() {
-        Destination destination = new ActiveMQQueue("test.queue");
-
-        for(int i=0; i<100; i++){
-            producer.sendMessage(destination, "my name is jia!");
+        for(int i=0; i<10; i++){
+            producer.sendMessage(queue, i + " : my name is queue!");
+            producer.sendMessage(topic, i + " : my name is topic!");
         }
     }
 }
