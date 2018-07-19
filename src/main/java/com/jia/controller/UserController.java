@@ -38,10 +38,11 @@ public class UserController {
         if(allUser == null) {
             users = userService.findAllUser();
             redisService.set("USERS", users);
+            return Result.success(users);
         } else {
-            users = RedisObjectUtil.convertToList(allUser, User.class);
+            return  Result.success(allUser);
         }
-        return Result.success(users);
+
     }
 
 
