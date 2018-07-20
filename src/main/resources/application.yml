@@ -24,6 +24,10 @@ spring:
         min-idle: 0
         timeout: 10000
 
+  ## 配置静态资源访问
+  mvc:
+    static-path-pattern: /static/**
+
 ## mybatis 配置
 mybatis:
   type-aliases-package: com.jia.model
@@ -33,5 +37,10 @@ mybatis:
 cron:
   test1: 0/30 * * * * ?
   test2: 0/20 * * * * ?
+
+cdn:
+  assets:
+    cssLocation:
+
 
 
