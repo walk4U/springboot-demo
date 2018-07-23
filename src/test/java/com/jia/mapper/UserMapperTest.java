@@ -31,5 +31,9 @@ public class UserMapperTest extends ApplicationTests {
         Assert.assertTrue(users != null);
     }
 
-
+    @Test
+    public void selectByAccount() {
+        User lili = userMapper.selectByAccount("lili");
+        System.out.println(lili);
+    }
 }

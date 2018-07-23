@@ -20,8 +20,10 @@ public class CodeMsg {
 
     // 业务异常
     public static CodeMsg USER_NOT_EXIST = new CodeMsg(500102,"用户不存在");
-    public static CodeMsg ONLINE_USER_OVER = new CodeMsg(500103,"在线用户数超出允许登录的最大用户限制。");
-    public static CodeMsg SESSION_NOT_EXIST =  new CodeMsg(500104,"不存在离线session数据");
+    public static CodeMsg USER_REGISTER_FAIL = new CodeMsg(500105,"用户注册失败");
+    public static CodeMsg ACCOUNT_OR_PSW_ERR = new CodeMsg(500106,"用户名或密码错误");
+    public static CodeMsg ACCOUNT_LOCKED = new CodeMsg(500107,"账号被锁定");
+    public static CodeMsg AUTHOR_ERR = new CodeMsg(500108,"登录失败");
 
     public CodeMsg(int code, String message) {
         this.code = code;
