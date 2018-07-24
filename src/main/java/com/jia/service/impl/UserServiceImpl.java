@@ -1,7 +1,7 @@
 package com.jia.service.impl;
 
 import com.jia.mapper.UserMapper;
-import com.jia.model.User;
+import com.jia.model.entity.User;
 import com.jia.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
 package com.jia.shiro;
 
-import com.jia.model.User;
+import com.jia.model.entity.User;
 import com.jia.service.UserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;

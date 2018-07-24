@@ -1,4 +1,4 @@
-package com.jia.model;
+package com.jia.model.entity;
 
 public class User {
 

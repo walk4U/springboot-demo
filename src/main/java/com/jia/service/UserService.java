@@ -1,6 +1,6 @@
 package com.jia.service;
 
-import com.jia.model.User;
+import com.jia.model.entity.User;
 
 import java.util.List;
 

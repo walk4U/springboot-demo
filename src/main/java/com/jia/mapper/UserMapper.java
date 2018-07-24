@@ -1,6 +1,6 @@
 package com.jia.mapper;
 
-import com.jia.model.User;
+import com.jia.model.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

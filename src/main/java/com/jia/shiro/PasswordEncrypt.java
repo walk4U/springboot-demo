@@ -1,6 +1,6 @@
 package com.jia.shiro;
 
-import com.jia.model.User;
+import com.jia.model.entity.User;
 import org.apache.shiro.crypto.RandomNumberGenerator;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.SimpleHash;

@@ -1,14 +1,12 @@
 package com.jia.service.redis;
 
 import com.jia.ApplicationTests;
-import com.jia.model.User;
+import com.jia.model.entity.User;
 import com.jia.service.UserService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 public class RedisServiceTest extends ApplicationTests {
 
