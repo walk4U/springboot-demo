@@ -38,9 +38,6 @@ cron:
   test1: 0/30 * * * * ?
   test2: 0/20 * * * * ?
 
-cdn:
-  assets:
-    cssLocation:
 
 
 

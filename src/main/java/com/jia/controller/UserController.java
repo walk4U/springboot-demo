@@ -5,7 +5,7 @@ import com.jia.model.result.CodeMsg;
 import com.jia.model.result.Result;
 import com.jia.model.vo.UserVO;
 import com.jia.service.UserService;
-import com.jia.service.redis.RedisService;
+import com.jia.redis.RedisService;
 import com.jia.shiro.PasswordEncrypt;
 import com.jia.shiro.ShiroUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -42,7 +42,7 @@ public class UserController {
         List<User> users;
         if(allUser == null) {
             users = userService.findAllUser();
-            redisService.set("USERS", users);
+            redisService.set("USERS", users, 3600 * 2L);
             return Result.success(users);
         } else {
             return  Result.success(allUser);

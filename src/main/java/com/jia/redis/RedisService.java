@@ -1,4 +1,4 @@
-package com.jia.service.redis;
+package com.jia.redis;
 
 import org.springframework.data.redis.core.*;
 import org.springframework.stereotype.Service;

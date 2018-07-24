@@ -2,6 +2,7 @@ package com.jia.service.redis;
 
 import com.jia.ApplicationTests;
 import com.jia.model.entity.User;
+import com.jia.redis.RedisService;
 import com.jia.service.UserService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
