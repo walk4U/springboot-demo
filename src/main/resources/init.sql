@@ -1,10 +1,10 @@
-DROP TABLE IF EXISTS `userDO`
-CREATE TABLE `userDO` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `account` varchar(20) NOT NULL COMMENT '账号',
-  `password` varchar(128) NOT NULL COMMENT '密码',
-  `salt` varchar(128) NOT NULL COMMENT '盐值',
-  `name` varchar(20) NOT NULL,
-  `age` int(11) DEFAULT NULL,
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+  `account` VARCHAR(20) NOT NULL COMMENT '账号',
+  `password` VARCHAR(128) NOT NULL COMMENT '密码',
+  `salt` VARCHAR(128) NOT NULL COMMENT '盐值',
+  `name` VARCHAR(20) NOT NULL,
+  `age` INT(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
+) ENGINE=INNODB DEFAULT CHARSET=utf8
