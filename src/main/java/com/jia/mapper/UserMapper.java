@@ -1,6 +1,7 @@
 package com.jia.mapper;
 
-import com.jia.model.entity.User;
+import com.jia.model.entity.UserDO;
+import com.jia.model.param.UserQueryParam;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -8,9 +9,11 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
 
-    int insert(User user);
+    int insert(UserDO userDO);
 
-    List<User> selectAll();
+    List<UserDO> selectAll();
 
-    User selectByAccount(String account);
+    List<UserDO> selectByParam(UserQueryParam param);
+
+    UserDO selectByAccount(String account);
 }

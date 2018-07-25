@@ -1,6 +1,6 @@
 package com.jia.shiro;
 
-import com.jia.model.entity.User;
+import com.jia.model.entity.UserDO;
 import org.apache.shiro.SecurityUtils;
 
 /**
@@ -10,7 +10,7 @@ import org.apache.shiro.SecurityUtils;
  */
 public class ShiroUtil {
 
-    public static User getUser() {
-        return (User)SecurityUtils.getSubject().getPrincipal();
+    public static UserDO getUser() {
+        return (UserDO)SecurityUtils.getSubject().getPrincipal();
     }
 }

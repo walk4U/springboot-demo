@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS `user` 
-CREATE TABLE `user` (
+DROP TABLE IF EXISTS `userDO`
+CREATE TABLE `userDO` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `account` varchar(20) NOT NULL COMMENT '账号',
   `password` varchar(128) NOT NULL COMMENT '密码',

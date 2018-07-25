@@ -1,6 +1,6 @@
 package com.jia.model.vo;
 
-import com.jia.model.entity.User;
+import com.jia.model.entity.UserDO;
 
 /**
  * @Auther: jia
@@ -31,16 +31,16 @@ public class UserVO {
 
     /**
      * UserVO 转换
-     * @param user
+     * @param userDO
      * @return
      */
-    public static UserVO convertToVo(User user) {
-        if(user == null) {
+    public static UserVO convertToVo(UserDO userDO) {
+        if(userDO == null) {
             return null;
         }
         UserVO userVO = new UserVO();
-        userVO.setName(user.getName());
-        userVO.setAge(user.getAge());
+        userVO.setName(userDO.getName());
+        userVO.setAge(userDO.getAge());
         return userVO;
     }
 }

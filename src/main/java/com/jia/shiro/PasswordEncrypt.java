@@ -1,6 +1,6 @@
 package com.jia.shiro;
 
-import com.jia.model.entity.User;
+import com.jia.model.entity.UserDO;
 import org.apache.shiro.crypto.RandomNumberGenerator;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.SimpleHash;
@@ -31,18 +31,18 @@ public class PasswordEncrypt {
         this.hashIterations = hashIterations;
     }
 
-    public void encryptPassword(User user) {
+    public void encryptPassword(UserDO userDO) {
 
-        user.setSalt(randomNumberGenerator.nextBytes().toHex());
+        userDO.setSalt(randomNumberGenerator.nextBytes().toHex());
 
         String newPassword = new SimpleHash(
             algorithmName,
-            user.getPassword(),
-            ByteSource.Util.bytes(user.getSalt()),
+            userDO.getPassword(),
+            ByteSource.Util.bytes(userDO.getSalt()),
             hashIterations
         ).toHex();
 
-        user.setPassword(newPassword);
+        userDO.setPassword(newPassword);
     }
 
     public String encryptOldPwd(String salt,String password){

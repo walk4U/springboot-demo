@@ -1,6 +1,6 @@
 package com.jia.shiro;
 
-import com.jia.model.entity.User;
+import com.jia.model.entity.UserDO;
 import com.jia.service.UserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -32,16 +32,16 @@ public class MyShiroRealm extends AuthorizingRealm{
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         String account = authenticationToken.getPrincipal().toString();
-        User user = userService.getUserByName(account);
-        if(user == null) {
+        UserDO userDO = userService.getUserByName(account);
+        if(userDO == null) {
             throw new UnknownAccountException();
         }
 
         //交给AuthenticatingRealm使用CredentialsMatcher进行密码匹配
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
-                user,//认证通过后，存放在session,一般存放user对象
-                user.getPassword(), //密码
-                new ShiroByteSource(user.getSalt()),
+                userDO,//认证通过后，存放在session,一般存放user对象
+                userDO.getPassword(), //密码
+                new ShiroByteSource(userDO.getSalt()),
                 getName()  //realm name
         );
         return authenticationInfo;

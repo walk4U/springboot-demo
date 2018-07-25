@@ -1,6 +1,6 @@
 package com.jia.model.entity;
 
-public class User {
+public class UserDO {
 
     private Long id;
 

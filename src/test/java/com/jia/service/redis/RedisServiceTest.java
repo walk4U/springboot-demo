@@ -1,7 +1,7 @@
 package com.jia.service.redis;
 
 import com.jia.ApplicationTests;
-import com.jia.model.entity.User;
+import com.jia.model.entity.UserDO;
 import com.jia.redis.RedisService;
 import com.jia.service.UserService;
 import org.junit.Test;
@@ -19,8 +19,8 @@ public class RedisServiceTest extends ApplicationTests {
 
     @Test
     public void set() {
-        List<User> allUser = userService.findAllUser();
-        boolean res = redisService.set("allUser", allUser);
+        List<UserDO> allUserDO = userService.findAllUser();
+        boolean res = redisService.set("allUserDO", allUserDO);
         System.out.println(res);
     }
 

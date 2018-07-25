@@ -1,6 +1,7 @@
 package com.jia.controller;
 
-import com.jia.model.entity.User;
+import com.jia.model.entity.UserDO;
+import com.jia.model.param.UserQueryParam;
 import com.jia.model.result.CodeMsg;
 import com.jia.model.result.Result;
 import com.jia.model.vo.UserVO;
@@ -14,6 +15,7 @@ import org.apache.shiro.authc.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,27 +40,40 @@ public class UserController {
     @RequestMapping(value = "/get", method = RequestMethod.GET)
     public Result getAllUser() {
         logger.info("Start to get all user");
-        Object allUser = redisService.get("USERS");
-        List<User> users;
+        Object allUser = redisService.get("USERS-");
+        List<UserDO> userDOS;
         if(allUser == null) {
-            users = userService.findAllUser();
-            redisService.set("USERS", users, 3600 * 2L);
-            return Result.success(users);
+            userDOS = userService.findAllUser();
+            redisService.set("USERS-", userDOS, 3600 * 2L);
+            return Result.success(userDOS);
         } else {
             return  Result.success(allUser);
         }
 
     }
 
+
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public Result listUser(@Param("age")int age,
+                           @Param("pageNum")int pageNum, @Param("pageSize")int pageSize) {
+        UserQueryParam userQueryParam = new UserQueryParam();
+        userQueryParam.setAge(age);
+        List<UserDO> userDOS = userService.getByPage(userQueryParam, pageNum, pageSize);
+        return Result.success(userDOS);
+
+    }
+
+
+
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public Result register(User user) {
-        if(user == null || StringUtils.isBlank(user.getAccount())
-                || StringUtils.isBlank(user.getPassword())
-                || StringUtils.isBlank(user.getName())) {
+    public Result register(UserDO userDO) {
+        if(userDO == null || StringUtils.isBlank(userDO.getAccount())
+                || StringUtils.isBlank(userDO.getPassword())
+                || StringUtils.isBlank(userDO.getName())) {
             return Result.fail(CodeMsg.PARAMETER_ISNULL);
         }
-        passwordEncrypt.encryptPassword(user);
-        int i = userService.insert(user);
+        passwordEncrypt.encryptPassword(userDO);
+        int i = userService.insert(userDO);
         if(i==1) {
             return Result.success();
         } else {
@@ -97,8 +112,8 @@ public class UserController {
 
     @RequestMapping(value = "/getUserInfo", method = RequestMethod.GET)
     public Result getUserInfo() {
-        User user = ShiroUtil.getUser();
-        UserVO userVO = UserVO.convertToVo(user);
+        UserDO userDO = ShiroUtil.getUser();
+        UserVO userVO = UserVO.convertToVo(userDO);
         return Result.success(userVO);
     }
 }
