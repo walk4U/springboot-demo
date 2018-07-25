@@ -13,5 +13,7 @@ public interface UserService {
 
     List<UserDO> getByPage(UserQueryParam param,int pageNum, int pageSize);
 
+    int countByParam(UserQueryParam param);
+
     UserDO getUserByName(String account);
 }

@@ -16,4 +16,6 @@ public interface UserMapper {
     List<UserDO> selectByParam(UserQueryParam param);
 
     UserDO selectByAccount(String account);
+
+    int countByParam(UserQueryParam param);
 }

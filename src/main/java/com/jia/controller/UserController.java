@@ -1,9 +1,11 @@
 package com.jia.controller;
 
+import com.google.common.collect.Lists;
 import com.jia.model.entity.UserDO;
 import com.jia.model.param.UserQueryParam;
 import com.jia.model.result.CodeMsg;
 import com.jia.model.result.Result;
+import com.jia.model.vo.UserListVO;
 import com.jia.model.vo.UserVO;
 import com.jia.service.UserService;
 import com.jia.redis.RedisService;
@@ -52,18 +54,20 @@ public class UserController {
 
     }
 
-
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public Result listUser(@Param("age")int age,
-                           @Param("pageNum")int pageNum, @Param("pageSize")int pageSize) {
-        UserQueryParam userQueryParam = new UserQueryParam();
-        userQueryParam.setAge(age);
+    public Result listUser(UserQueryParam userQueryParam, @Param("pageNum")int pageNum,
+                           @Param("pageSize")int pageSize) {
         List<UserDO> userDOS = userService.getByPage(userQueryParam, pageNum, pageSize);
-        return Result.success(userDOS);
-
+        List<UserVO> userVOS = Lists.newArrayList();
+        for (UserDO userDO : userDOS) {
+            userVOS.add(UserVO.convertToVo(userDO));
+        }
+        int count = userService.countByParam(userQueryParam);
+        UserListVO userListVO = new UserListVO();
+        userListVO.setList(userVOS);
+        userListVO.setTotal(count);
+        return Result.success(userListVO);
     }
-
-
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public Result register(UserDO userDO) {

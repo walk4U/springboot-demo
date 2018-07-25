@@ -51,6 +51,16 @@
         </if>
     </select>
 
+    <select id="countByParam" parameterType="com.jia.model.param.UserQueryParam" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM user
+        <where>
+            <if test="age != null">
+                age = #{age}
+            </if>
+        </where>
+    </select>
+
     <select id="selectByAccount" parameterType="java.lang.String" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>

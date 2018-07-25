@@ -35,6 +35,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public int countByParam(UserQueryParam param) {
+        return userMapper.countByParam(param);
+    }
+
+    @Override
     public UserDO getUserByName(String account) {
         return userMapper.selectByAccount(account);
     }
